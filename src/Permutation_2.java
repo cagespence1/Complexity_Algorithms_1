@@ -1,16 +1,12 @@
 import java.util.Scanner;
 
-public class Permutation_1 {
+public class Permutation_2 {
 
     public static void main(String[] args) {
-
-        while (true) {
-            new Permutation_1().run();
-        }
+        new Permutation_2().run();
     }
 
-    public void run() {
-
+    private void run() {
         //initialize the scanner
         Scanner inputScanner = new Scanner(System.in);
 
@@ -57,10 +53,6 @@ public class Permutation_1 {
         }
 
         System.out.println("time: " + (System.currentTimeMillis() - startTime));
-
-//        for (int i = 0; i < n; i++) {
-//            System.out.println(permutations[i]);
-//        }
 
     }
 
