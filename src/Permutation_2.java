@@ -3,10 +3,12 @@ import java.util.Scanner;
 public class Permutation_2 {
 
     public static void main(String[] args) {
+        while (true)
         new Permutation_2().run();
     }
 
     private void run() {
+
         //initialize the scanner
         Scanner inputScanner = new Scanner(System.in);
 
@@ -18,41 +20,30 @@ public class Permutation_2 {
         //set upper bound of random number generation
         int j = n-1;
 
-        //create the arary with length n
+        //create the arrays with length n
         int[] permutations = new int[n];
-
-        for(int i=0; i<permutations.length; i++){
-            permutations[i] = -1;
-        }
-
-        //initialize the same boolean
-        boolean same = true;
+        boolean[] used = new boolean[n];
 
         long startTime = System.currentTimeMillis();
 
         //main for-loop
         for (int i = 0; i < n; i++) {
 
-            same = true;
-            while (same) {
-
                 int x = randInt(j);
 
-                for (int k = 0; k < n; k++) {
-
-                    if (x == permutations[k]){
-                        break;
-                    }
-
-                    if (k == n-1){
-                        same = false;
-                        permutations[i] = x;
-                    }
+                if (!used[x]){
+                    permutations[i] = x;
+                } else {
+                    i--;
                 }
             }
-        }
 
         System.out.println("time: " + (System.currentTimeMillis() - startTime));
+
+        for (int i = 0; i < permutations.length; i++) {
+            System.out.print(permutations[i] + ", ");
+        }
+        System.out.println();
 
     }
 
