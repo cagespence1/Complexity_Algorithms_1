@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
-public class Permutation_2 {
-
+public class Permutation_3 {
     public static void main(String[] args) {
         while (true)
-        new Permutation_2().run();
+        new Permutation_3().run();
     }
 
     private void run() {
@@ -19,31 +18,23 @@ public class Permutation_2 {
 
         //set upper bound of random number generation
         int j = n-1;
+        int swapPosition = 0;
 
         //create the arrays with length n
         int[] permutations = new int[n];
-        boolean[] used = new boolean[n];
 
         long startTime = System.currentTimeMillis();
 
-        //main for-loop
         for (int i = 0; i < n; i++) {
 
-                int x = randInt(j);
+            swapPosition = randInt(i); //0-i
 
-                if (!used[x]){
-                    permutations[i] = x;
-                } else {
-                    i--;
-                }
-            }
+            permutations[i] = permutations[swapPosition]; //replace [i] with the temp value
+
+            permutations[swapPosition] = i; //replace the [swapPosition] with i
+        }
 
         System.out.println("time: " + (System.currentTimeMillis() - startTime));
-
-//        for (int i = 0; i < permutations.length; i++) {
-//            System.out.print(permutations[i] + ", ");
-//        }
-//        System.out.println();
 
     }
 
