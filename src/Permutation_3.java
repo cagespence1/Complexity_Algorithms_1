@@ -1,40 +1,38 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Permutation_3 {
     public static void main(String[] args) {
-        while (true)
-        new Permutation_3().run();
+
+        Permutation_3 perm = new Permutation_3();
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.print("input number of permutations: ");
+        int n = inputScanner.nextInt();
+        System.out.println("__________");
+
+        for (int i = 0; i < 10; i++) {
+            perm.run(n);
+        }
     }
 
-    private void run() {
+    private void run(int n) {
 
-        //initialize the scanner
-        Scanner inputScanner = new Scanner(System.in);
-
-        System.out.print("input number of permutations: ");
-
-        //get scanner input
-        int n = inputScanner.nextInt();
-
-        //set upper bound of random number generation
-        int j = n-1;
-        int swapPosition = 0;
-
-        //create the arrays with length n
+        // 1
         int[] permutations = new int[n];
 
-        long startTime = System.currentTimeMillis();
+        // 2
+        int swapPosition;
 
-        for (int i = 0; i < n; i++) {
+        long counter = 0;
 
-            swapPosition = randInt(i); //0-i
-
-            permutations[i] = permutations[swapPosition]; //replace [i] with the temp value
-
-            permutations[swapPosition] = i; //replace the [swapPosition] with i
+        for (int i = 0; i < n; i++) {                                                           // n^2
+            counter++;
+            swapPosition = randInt(i); //0-i                                                    // +1
+            permutations[i] = permutations[swapPosition]; //replace [i] with the temp value     // +1
+            permutations[swapPosition] = i; //replace the [swapPosition] with i                 // +1
         }
 
-        System.out.println("time: " + (System.currentTimeMillis() - startTime));
+        System.out.println(counter);
 
     }
 

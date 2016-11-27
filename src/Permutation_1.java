@@ -4,63 +4,63 @@ public class Permutation_1 {
 
     public static void main(String[] args) {
 
-        while (true) {
-            new Permutation_1().run();
+        Permutation_1 perm = new Permutation_1();
+
+        long total = 0;
+
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.print("input number of permutations: ");
+        int n = inputScanner.nextInt();
+        System.out.println("__________");
+
+        for (int i = 0; i < 10; i++) {
+            total += perm.run(n);
         }
+
+        System.out.println("\naverage\n"+total/10);
     }
 
-    public void run() {
+    public long run(int n) {
 
-        //initialize the scanner
-        Scanner inputScanner = new Scanner(System.in);
-
-        System.out.print("input number of permutations: ");
-
-        //get scanner input
-        int n = inputScanner.nextInt();
-
-        //set upper bound of random number generation
+        long counter = 0;
         int j = n-1;
 
-        //create the arary with length n
+        // 1
         int[] permutations = new int[n];
-
         for(int i=0; i<permutations.length; i++){
             permutations[i] = -1;
         }
 
-        //initialize the same boolean
-        boolean same = true;
+        // 2
+        boolean unique = false;
 
-        long startTime = System.currentTimeMillis();
-
-        //main for-loop
+        // 3
         for (int i = 0; i < n; i++) {
 
-            same = true;
-            while (same) {
+            // 4
+            while (!unique) {
 
+                // 5
                 int x = randInt(j);
 
+                // 6
                 for (int k = 0; k < n; k++) {
+                     counter ++;
 
                     if (x == permutations[k]){
                         break;
                     }
 
                     if (k == n-1){
-                        same = false;
+                        unique = false;
                         permutations[i] = x;
                     }
                 }
             }
         }
 
-        System.out.println("time: " + (System.currentTimeMillis() - startTime));
-
-//        for (int i = 0; i < n; i++) {
-//            System.out.println(permutations[i]);
-//        }
+        System.out.print("*");
+        return counter;
 
     }
 

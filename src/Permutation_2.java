@@ -3,51 +3,53 @@ import java.util.Scanner;
 public class Permutation_2 {
 
     public static void main(String[] args) {
-        while (true)
-        new Permutation_2().run();
-    }
-
-    private void run() {
-
-        //initialize the scanner
         Scanner inputScanner = new Scanner(System.in);
-
         System.out.print("input number of permutations: ");
 
-        //get scanner input
         int n = inputScanner.nextInt();
+        System.out.println("__________");
+        long total = 0;
 
-        //set upper bound of random number generation
-        int j = n-1;
+        Permutation_2 perm = new Permutation_2();
+        for (int i = 0; i < 10; i++) {
+            total += perm.run(n);
+        }
 
-        //create the arrays with length n
+        System.out.println("\naverage\n"+total/10);
+    }
+
+    private long run(int n) {
+
+        long counter = 0;
+        int j = n - 1;
+
+        // 1
         int[] permutations = new int[n];
+
+        // 2
         boolean[] used = new boolean[n];
 
-        long startTime = System.currentTimeMillis();
-
-        //main for-loop
+        // 3
         for (int i = 0; i < n; i++) {
 
-                int x = randInt(j);
+            int x = randInt(j);
 
-                if (!used[x]){
-                    permutations[i] = x;
-                } else {
-                    i--;
-                }
+            while (used[x]) {
+                counter++;
+                x = randInt(j);
             }
 
-        System.out.println("time: " + (System.currentTimeMillis() - startTime));
+            used[x] = true;
+            permutations[i] = x;
+        }
 
-//        for (int i = 0; i < permutations.length; i++) {
-//            System.out.print(permutations[i] + ", ");
-//        }
-//        System.out.println();
+        System.out.print("*");
+
+        return counter;
 
     }
 
-    public int randInt(int j){
-        return (int)(Math.random() * (j + 1));
+    public int randInt(int j) {
+        return (int) (Math.random() * (j + 1));
     }
 }
